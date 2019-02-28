@@ -5,9 +5,6 @@
     <title>Flora个人博客</title>
     <link rel="stylesheet" href="./css/base.css">
     <link rel="stylesheet" href="./css/blog_detail.css">
-    <script src="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/js/bootstrap.min.js"></script>
-    <link href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/css/bootstrap-combined.no-icons.min.css" rel="stylesheet">
-    <link href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/css/bootstrap-responsive.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
     <script src="./js/axios.js"></script>
 </head>
@@ -35,12 +32,20 @@
             <hr>
             <div class="blog_content" v-html="content"></div>
         </div>
-        <div class="send_comments">
+        <div class="send_comment blog">
             <h3>发表评论</h3>
             <div>
-                <input type="text" placeholder="请输入标题名称" id="title" />
-                <input type="text" placeholder="请输入标签名称，用逗号隔开" id="tags" />
+                <input type="text" placeholder="昵称" id="comment_name" />
+                <input type="text" placeholder="邮箱(评论被回复时能收到通知)" id="comment_email" />
             </div>
+            <div>
+                <textarea placeholder="评论内容" id="comment_content"></textarea>
+            </div>
+            <div>
+                <input type="text" placeholder="验证码" id="comment_code" />
+            </div>
+            <button>提交评论</button>
+            <button>重置</button>
         </div>
     </div>
     <div class="content_right">
