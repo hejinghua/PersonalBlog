@@ -1,43 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="bf067e17-0286-4775-b942-4ad6774049ee" name="Default" comment="">
-      <change beforePath="" afterPath="$PROJECT_DIR$/.idea/copyright/profiles_settings.xml" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/.idea/jsLibraryMappings.xml" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/.idea/watcherTasks.xml" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/config.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/dao/blogDao.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/dao/dbutils.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/dao/everyDayDao.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/dao/tagBlogMappingDao.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/dao/tagDao.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/index.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/loader.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/page/about.html" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/page/blog_detail.html" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/page/css/about.css" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/page/css/base.css" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/page/css/blog_detail.css" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/page/css/guestbook.css" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/page/css/index.css" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/page/css/sitemap.css" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/page/edit_blog.html" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/page/edit_everyday.html" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/page/guestbook.html" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/page/index.html" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/page/js/axios.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/page/js/base.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/page/js/blog_detail.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/page/js/index.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/page/sitemap.html" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/server.conf" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/util/respUtil.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/util/timeUtil.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/web/blogController.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/web/everyDayController.js" />
-    </list>
+    <list default="true" id="bf067e17-0286-4775-b942-4ad6774049ee" name="Default" comment="" />
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
     <ignored path="$PROJECT_DIR$/tmp/" />
@@ -221,7 +185,7 @@
   <component name="NodeModulesDirectoryManager">
     <handled-path value="$PROJECT_DIR$/node_modules" />
   </component>
-  <component name="ProjectFrameBounds" extendedState="1">
+  <component name="ProjectFrameBounds">
     <option name="x" value="131" />
     <option name="y" value="22" />
     <option name="width" value="1524" />
@@ -337,15 +301,15 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1550633720059</updated>
-      <workItem from="1550633721326" duration="81927000" />
+      <workItem from="1550633721326" duration="82515000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="81927000" />
+    <option name="totallyTimeSpent" value="82515000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="131" y="22" width="1524" height="1096" extended-state="1" />
+    <frame x="131" y="22" width="1524" height="1096" extended-state="0" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24973601" sideWeight="0.5" order="1" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
