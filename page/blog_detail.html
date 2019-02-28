@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Flora个人博客</title>
+    <link rel="stylesheet" href="./css/base.css">
+    <link rel="stylesheet" href="./css/blog_detail.css">
+    <script src="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/js/bootstrap.min.js"></script>
+    <link href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/css/bootstrap-combined.no-icons.min.css" rel="stylesheet">
+    <link href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/css/bootstrap-responsive.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+    <script src="./js/axios.js"></script>
+</head>
+<body>
+    <header class="header">
+    <div class="container">
+        <a href="/" class="title">Flora的个人博客 | 技术博客</a>
+        <ul class="menu">
+            <li><a href="/">首页</a></li>
+            <li><a href="/sitemap.html">地图</a></li>
+            <li><a href="/about.html">关于</a></li>
+            <li><a href="/guestbook.html">留言</a></li>
+        </ul>
+        <div class="search_bar">
+            <input type="text" placeholder="输入关键词查找" />
+            <input type="submit" value="搜索" class="button" />
+        </div>
+    </div>
+</header>
+    <div class="contentWrapper">
+    <div class="content_left">
+        <div class="blog" id="blog_detail">
+            <div class="blog_title">{{title}}</div>
+            <p class="blog_msg">作者：<span>Flora</span>标签：<span class="tags_content">{{tags}}</span>发布于：<span>{{ctime}}</span><span>浏览（{{views}}）</span></p>
+            <hr>
+            <div class="blog_content" v-html="content"></div>
+        </div>
+        <div class="send_comments">
+            <h3>发表评论</h3>
+            <div>
+                <input type="text" placeholder="请输入标题名称" id="title" />
+                <input type="text" placeholder="请输入标签名称，用逗号隔开" id="tags" />
+            </div>
+        </div>
+    </div>
+    <div class="content_right">
+        <div class="right_module" id="random_tags">
+            <div class="right_module_title">随机标签云</div>
+            <div class="right_module_content">
+                <a href="/" v-for="tag in tags" :style="{color: randomColor(), fontSize: randomSize()}">{{tag}}</a>
+            </div>
+        </div>
+        <div class="right_module" id="new_hot">
+            <div class="right_module_title">最近热门</div>
+            <ul>
+                <li v-for="hot in hotList">
+                    <a :href='hot.link'>{{hot.title}}</a>
+                </li>
+            </ul>
+        </div>
+        <div class="right_module" id="new_comments">
+            <div class="right_module_title">最近评论</div>
+            <ul>
+                <li v-for="comment in commentList">
+                    <div>
+                        <span>{{comment.name}}</span>
+                        <span class="pull_right">[{{comment.date}}]</span>
+                    </div>
+                    <p>{{comment.comment}}</p>
+                </li>
+            </ul>
+        </div>
+        <div class="right_module">
+            <div class="right_module_title">友情链接</div>
+            <div class="right_module_content">
+                <span><a href="/">挨踢茶馆</a></span><span><a href="/">挨踢茶馆</a></span><span><a href="/">挨踢茶馆</a></span>
+                <span><a href="/">挨踢茶馆</a></span><span><a href="/">挨踢茶馆</a></span><span><a href="/">挨踢茶馆</a></span>
+                <span><a href="/">挨踢茶馆</a></span><span><a href="/">挨踢茶馆</a></span><span><a href="/">挨踢茶馆</a></span>
+            </div>
+        </div>
+    </div>
+</div>
+    <div class="footer">
+    <ul>
+        <li>C/C++</li>
+        <li>C/C++</li>
+        <li>C/C++</li>
+        <li>C/C++</li>
+        <li>C/C++</li>
+        <li>C/C++</li>
+        <li>新闻资讯</li>
+        <li>C/C++</li>
+    </ul>
+    <p>Copyright © 2010-2017 Flora个人博客 All rights reserved. 由免费开源的WordPress强力驱动. 鲁ICP备14017955号站长统计</p>
+</div>
+    <script src="./js/blog_detail.js"></script>
+    <script src="./js/base.js"></script>
+</body>
+</html>

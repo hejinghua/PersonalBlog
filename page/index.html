@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Flora个人博客</title>
+    <link rel="stylesheet" href="./css/base.css">
+    <link rel="stylesheet" href="./css/index.css">
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+    <script src="./js/axios.js"></script>
+</head>
+<body>
+     <header class="header">
+         <div class="container">
+             <a href="/" class="title">Flora的个人博客 | 技术博客</a>
+             <ul class="menu">
+                 <li style="background:#080808;"><a href="/">首页</a></li>
+                 <li><a href="/sitemap.html">地图</a></li>
+                 <li><a href="/about.html">关于</a></li>
+                 <li><a href="/guestbook.html">留言</a></li>
+             </ul>
+             <div class="search_bar">
+                 <input type="text" placeholder="输入关键词查找" />
+                 <input type="submit" value="搜索" class="button" />
+             </div>
+         </div>
+     </header>
+     <div class="contentWrapper">
+         <div class="content_left">
+             <div class="every_day" id="every_day">
+                 <span>每日一句</span>
+                 <p v-html="getContent"></p>
+             </div>
+             <div class="article_list" id="article_list">
+                 <div class="article" v-for="article in articleList">
+                     <a class="article_title" :href="article.link">{{article.title}}</a>
+                     <p class="article_content">{{article.content}}</p>
+                     <div class="article_footer">发布于{{article.ctime}} |  浏览({{article.views}}) | Tags：{{article.tags}}</div>
+                 </div>
+                 <div class="page_tool">
+                     <ul>
+                         <li v-for="pageNum in pageNumList" v-on:click="jumpTo(pageNum.page)" :class="{now_page: pageNum.text == page}">{{pageNum.text}}</li>
+                         <!--<li>1</li>-->
+                         <!--<li>2</li>-->
+                         <!--<li>3</li>-->
+                         <!--<li>>></li>-->
+                     </ul>
+                 </div>
+             </div>
+         </div>
+         <div class="content_right">
+             <div class="right_module" id="random_tags">
+                 <div class="right_module_title">随机标签云</div>
+                 <div class="right_module_content">
+                   <a href="/" v-for="tag in tags" :style="{color: randomColor(), fontSize: randomSize()}">{{tag}}</a>
+                 </div>
+             </div>
+             <div class="right_module" id="new_hot">
+                 <div class="right_module_title">最近热门</div>
+                 <ul>
+                     <li v-for="hot in hotList">
+                         <a :href='hot.link'>{{hot.title}}</a>
+                     </li>
+                 </ul>
+             </div>
+             <div class="right_module" id="new_comments">
+                 <div class="right_module_title">最近评论</div>
+                 <ul>
+                     <li v-for="comment in commentList">
+                         <div>
+                             <span>{{comment.name}}</span>
+                             <span class="pull_right">[{{comment.date}}]</span>
+                         </div>
+                         <p>{{comment.comment}}</p>
+                     </li>
+                 </ul>
+             </div>
+             <div class="right_module">
+                 <div class="right_module_title">友情链接</div>
+                 <div class="right_module_content">
+                     <span><a href="/">挨踢茶馆</a></span><span><a href="/">挨踢茶馆</a></span><span><a href="/">挨踢茶馆</a></span>
+                     <span><a href="/">挨踢茶馆</a></span><span><a href="/">挨踢茶馆</a></span><span><a href="/">挨踢茶馆</a></span>
+                     <span><a href="/">挨踢茶馆</a></span><span><a href="/">挨踢茶馆</a></span><span><a href="/">挨踢茶馆</a></span>
+                 </div>
+             </div>
+         </div>
+     </div>
+     <div class="footer">
+         <ul>
+             <li>C/C++</li>
+             <li>C/C++</li>
+             <li>C/C++</li>
+             <li>C/C++</li>
+             <li>C/C++</li>
+             <li>C/C++</li>
+             <li>新闻资讯</li>
+             <li>C/C++</li>
+         </ul>
+         <p>Copyright © 2010-2017 Flora个人博客 All rights reserved. 由免费开源的WordPress强力驱动. 鲁ICP备14017955号站长统计</p>
+     </div>
+     <script src="./js/index.js"></script>
+     <script src="./js/base.js"></script>
+</body>
+</html>
