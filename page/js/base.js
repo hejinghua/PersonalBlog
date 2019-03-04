@@ -1,7 +1,7 @@
 var randomTags = new Vue ({
     el: '#random_tags',
     data: {
-        tags: ['微信','微信','微信','微信微信','微信','dsatg','ghfrj','asd','dgrke','微信','微信','微信','微信微信','微信','dsatg','ghfrj','asd','dgrke']
+        tags: []
     },
     computed: {
         randomColor: function () {
@@ -18,31 +18,87 @@ var randomTags = new Vue ({
                return size;
             }
         },
-    },
-    mounted: function () {
+        getAllTags: function () {
+            let _self = this;
+            return function () {
+                axios({
+                    method: 'get',
+                    url: '/queryRandomTags',
+                    // params: {}
+                }).then(function (res) {
+                    _self.tags = res.data.data;
 
+                }).catch(function (res) {
+                    console.log('请求失败');
+                });
+            }
+        }
+    },
+    created: function () {
+        this.getAllTags();
     }
 
 });
 var newHot = new Vue ({
      el: '#new_hot',
      data: {
-         hotList: [
-             {title: '查看你的AWS服务器已使用流量', link: 'http://www.google.com'},
-             {title: '查看你的AWS服务器已使用流量', link: 'http://www.google.com'},
-             {title: '查看你的AWS服务器已使用流量', link: 'http://www.google.com'},
-             {title: '查看你的AWS服务器已使用流量', link: 'http://www.google.com'},
-             {title: '查看你的AWS服务器已使用流量', link: 'http://www.google.com'},
-             {title: '查看你的AWS服务器使用流量', link: 'http://www.google.com'}
-         ]
-     }
+         hotList: []
+     },
+     computed:{
+         getNewHotList: function () {
+             let _self = this;
+             return function () {
+                 axios({
+                     method: 'get',
+                     url: '/queryBlogByHot',
+                     // params: {}
+                 }).then(function (res) {
+                     for (let i in res.data.data) {
+                         let temp = {};
+                         temp.title = res.data.data[i].title;
+                         temp.link = '/blog_detail.html?bid=' +  res.data.data[i].id;
+                         _self.hotList.push(temp);
+                     }
+                 }).catch(function (res) {
+                     console.log('请求失败');
+                 });
+             }
+         }
+     },
+    created: function () {
+        this.getNewHotList();
+    }
+
 });
 var newComments = new Vue ({
     el: '#new_comments',
     data: {
-        commentList: [
-            {name: '用户名', date: '2018-10-10', comment: '评论信息展示区'},
-            {name: '许寒', date: '6天前', comment: '谢谢晓哥，我已经搞定了'}
-        ]
+        commentList: []
+    },
+    created: function () {
+        this.getNewCommentList();
+    },
+    computed: {
+        getNewCommentList: function () {
+            let _self = this;
+            return function () {
+                axios({
+                    method: 'get',
+                    url: '/queryNewComment',
+                    // params: {}
+                }).then(function (res) {
+                    for (let i in res.data.data) {
+                        let temp = {};
+                        temp.name = res.data.data[i].user_name;
+                        temp.date = timeStampTurnTime(res.data.data[i].ctime);
+                        temp.comment = res.data.data[i].comments;
+                        _self.commentList.push(temp);
+                    }
+                    // console.log(res);
+                }).catch(function (res) {
+                    console.log('请求失败');
+                });
+            }
+        }
     }
 });

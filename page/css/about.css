@@ -23,33 +23,7 @@
     font-size: 14px;
 }
 
-.blog_comments {
-    width: 97%;
-    margin-top: 20px;
-    text-align: left;
-}
-.blog_comments_msg {
-    font-size: 18px;
-    margin-bottom: 15px;
-}
-.comment_repeat {
-    color: #58ABE3;
-    cursor: pointer;
-}
-.blog_comment {
-    width: 100%;
-    background: #D9EDF7;
-    border: 1px dashed #7ca4c1;
-    border-radius: 4px;
-    padding: 10px 10px 20px 10px;
-    margin-top: 10px;
-    color: #333333;
-}
-.blog_comment span {
-    display: inline-block;
-    font-size: 14px;
-    padding: 5px 10px;
-}
+
 .blog_comment div {
 
 }

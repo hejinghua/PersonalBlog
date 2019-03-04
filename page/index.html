@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="./css/index.css">
     <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
     <script src="./js/axios.js"></script>
+    <script src="./js/timeutil.js"></script>
 </head>
 <body>
      <header class="header">
@@ -34,7 +35,7 @@
                  <div class="article" v-for="article in articleList">
                      <a class="article_title" :href="article.link">{{article.title}}</a>
                      <p class="article_content">{{article.content}}</p>
-                     <div class="article_footer">发布于{{article.ctime}} |  浏览({{article.views}}) | Tags：{{article.tags}}</div>
+                     <div class="article_footer">发布于{{article.date}} |  浏览({{article.views}}) | Tags：{{article.tags}}</div>
                  </div>
                  <div class="page_tool">
                      <ul>
@@ -51,7 +52,7 @@
              <div class="right_module" id="random_tags">
                  <div class="right_module_title">随机标签云</div>
                  <div class="right_module_content">
-                   <a href="/" v-for="tag in tags" :style="{color: randomColor(), fontSize: randomSize()}">{{tag}}</a>
+                   <a v-for="tag in tags" :style="{color: randomColor(), fontSize: randomSize()}" :href="'/?tag=' + tag.tag">{{tag.tag}}</a>
                  </div>
              </div>
              <div class="right_module" id="new_hot">

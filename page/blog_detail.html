@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="./css/blog_detail.css">
     <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
     <script src="./js/axios.js"></script>
+    <script src="./js/timeutil.js"></script>
 </head>
 <body>
     <header class="header">
@@ -32,19 +33,29 @@
             <hr>
             <div class="blog_content" v-html="content"></div>
         </div>
-        <div class="send_comment blog">
+        <div class="blog_comments" id="blog_comments">
+            <p class="blog_comments_msg">当前文章：目前有{{total}} 条留言</p>
+            <div class="blog_comment" v-for="comment in commentList">
+                <span><b>{{comment.user_name}}：</b> {{comment.options}} 发表于{{comment.date}}<span class="comment_repeat" v-on:click="reply(comment.id, comment.user_name)">[回复]</span></span>
+                <div>{{comment.comments}}</div>
+            </div>
+        </div>
+        <div class="send_comment blog" id="send_comment">
             <h3>发表评论</h3>
             <div>
-                <input type="text" placeholder="昵称" id="comment_name" />
-                <input type="text" placeholder="邮箱(评论被回复时能收到通知)" id="comment_email" />
+                <input type="hidden" id="comment_reply" v-model="reply" />
+                <input type="hidden" id="comment_reply_name" v-model="reply_name" />
+                <input type="text" placeholder="昵称" id="comment_name" v-model="name" />
+                <input type="text" placeholder="邮箱(评论被回复时能收到通知)" id="comment_email" v-model="email" />
             </div>
             <div>
-                <textarea placeholder="评论内容" id="comment_content"></textarea>
+                <textarea placeholder="评论内容" id="comment_content" v-model="content"></textarea>
             </div>
             <div>
-                <input type="text" placeholder="验证码" id="comment_code" />
+                <input type="text" placeholder="验证码" id="comment_code" v-model="code" />
+                <div v-html="vcode" v-on:click="changeCode()" id="vcode"></div>
             </div>
-            <button>提交评论</button>
+            <button v-on:click="sendComment()">提交评论</button>
             <button>重置</button>
         </div>
     </div>
@@ -52,7 +63,7 @@
         <div class="right_module" id="random_tags">
             <div class="right_module_title">随机标签云</div>
             <div class="right_module_content">
-                <a href="/" v-for="tag in tags" :style="{color: randomColor(), fontSize: randomSize()}">{{tag}}</a>
+                <a v-for="tag in tags" :style="{color: randomColor(), fontSize: randomSize()}" :href="'/?tag=' + tag.tag">{{tag.tag}}</a>
             </div>
         </div>
         <div class="right_module" id="new_hot">
@@ -99,6 +110,7 @@
     <p>Copyright © 2010-2017 Flora个人博客 All rights reserved. 由免费开源的WordPress强力驱动. 鲁ICP备14017955号站长统计</p>
 </div>
     <script src="./js/blog_detail.js"></script>
+    <script src="./js/blog_comments.js"></script>
     <script src="./js/base.js"></script>
 </body>
 </html>

@@ -7,6 +7,24 @@ var url = require('url');
 
 var path = new Map();
 
+function queryBlogByHot(requset, response) {
+    blogDao.queryHotBlog(5, function (result) {
+        response.writeHead(200);
+        response.write(respUtil.writeResult('success', '查询成功', result));
+        response.end();
+    })
+}
+path.set('/queryBlogByHot', queryBlogByHot);
+
+function queryAllBlog(requset, response) {
+    blogDao.queryAllBlog(function (result) {
+        response.writeHead(200);
+        response.write(respUtil.writeResult('success', '查询成功', result));
+        response.end();
+    })
+}
+path.set('/queryAllBlog', queryAllBlog);
+
 function queryBlogById(request, response) {
     let params = url.parse(request.url, true).query;
     blogDao.queryBlogById(parseInt(params.id), function (result) {
@@ -14,6 +32,7 @@ function queryBlogById(request, response) {
         response.write(respUtil.writeResult('success', '查询成功', result));
         response.end();
     })
+    blogDao.addViews(parseInt(params.id), function (result) {})
 }
 path.set('/queryBlogById', queryBlogById);
 
@@ -32,7 +51,7 @@ function queryBlogByPage(request, response) {
         for(let i in result) {
             result[i].content = result[i].content.replace(/<img[\w\W]*'>/, '');
             result[i].content = result[i].content.replace(/<[\w\W]{1,5}>/g, "");
-            result[i].content = result[i].content.substring(0, 300);
+            result[i].content = result[i].content.substring(0, 100) + '...';
         }
         response.writeHead(200);
         response.write(respUtil.writeResult('success', '查询成功', result));
@@ -43,16 +62,16 @@ function queryBlogByPage(request, response) {
 path.set('/queryBlogByPage', queryBlogByPage);
 
 function editBlog(request, response) {
-    var params = url.parse(request.url, true).query;
-    var tags = params.tags.replace(/ /g, '').replace('，',',');
+    let params = url.parse(request.url, true).query;
+    let tags = params.tags.replace(/ /g, '').replace('，',',');
     request.on('data', function (data) {
-        blogDao.insertBlog(params.title, data.toString().trim(), tags, 0, timeUtil.getNow(), timeUtil.getNow(), function (result) {
+        blogDao.insertBlog(params.title, data.toString(), tags, 0, timeUtil.getNow(), timeUtil.getNow(), function (result) {
             response.writeHead(200);
-            response.write(respUtil.writeResult('success', '博客编辑添加成功', null));
+            response.write(respUtil.writeResult('success', '博客编辑成功', null));
             response.end();
-            var blogId = result.insertId;
-            var tagList = tags.split(',');
-            for(var i = 0; i< tagList.length; i++) {
+            let blogId = result.insertId;
+            let tagList = tags.split(',');
+            for(let i = 0; i< tagList.length; i++) {
                 if (tagList[i] == '') {
                     continue;
                 }

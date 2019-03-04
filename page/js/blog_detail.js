@@ -9,7 +9,7 @@ var blogDetail = new Vue ({
         views: '',
     },
     computed: {
-        
+
     },
     created: function () {
         let _self = this;
@@ -30,7 +30,7 @@ var blogDetail = new Vue ({
         }).then(function (res) {
             let result = res.data.data[0];
             _self.title = result.title;
-            _self.ctime = result.ctime;
+            _self.ctime = timeStampTurnTime(result.ctime);
             _self.tags = result.tags;
             _self.views = result.views;
             _self.content = result.content;

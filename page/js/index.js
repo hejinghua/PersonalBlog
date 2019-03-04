@@ -37,30 +37,55 @@ var articleList = new Vue ({
         getPage:function () {
              let _self = this;
              return function (page, pageSize) {
-                 axios({
-                     method: 'get',
-                     url: '/queryBlogByPage?page='+ ( page - 1) + '&pageSize=' + pageSize,
-                 }).then(function (res) {
-                     _self.articleList = res.data.data;
-                     _self.page = page;
-                     for(let i in _self.articleList) {
-                         _self.articleList[i].link = '/blog_detail.html?bid=' + _self.articleList[i].id;
-                     }
+                 let searchUrlParams = location.search.indexOf('?') > -1 ? location.search.split('?')[1] : '';
+                 if (searchUrlParams.split('=')[0] == 'tag' && searchUrlParams.split('=')[1] != null) {
+                     let tag = searchUrlParams.split('=')[1];
+                     axios({
+                         method: 'get',
+                         url: '/queryByTag?page='+ ( page - 1) + '&pageSize=' + pageSize + '&tag=' + tag,
+                     }).then(function (res) {
+                         _self.articleList = res.data.data;
+                         _self.count = _self.articleList.length;
+                         _self.page = page;
+                         for(let i in _self.articleList) {
+                             _self.articleList[i].link = '/blog_detail.html?bid=' + _self.articleList[i].id;
+                             _self.articleList[i].date = timeStampTurnTime(_self.articleList[i].ctime);
+                         }
+                         _self.generatePageTool;
+                     }).catch(function (res) {
+                         console.log('请求失败');
+                     });
+                 }else if (searchUrlParams == '') {
+                     axios({
+                         method: 'get',
+                         url: '/queryBlogByPage?page='+ ( page - 1) + '&pageSize=' + pageSize,
+                     }).then(function (res) {
+                         _self.articleList = res.data.data;
+                         _self.count = _self.articleList.length;
+                         _self.page = page;
+                         for(let i in _self.articleList) {
+                             _self.articleList[i].link = '/blog_detail.html?bid=' + _self.articleList[i].id;
+                             _self.articleList[i].date = timeStampTurnTime(_self.articleList[i].ctime);
+                         }
+                         _self.generatePageTool;
+                     }).catch(function (res) {
+                         console.log('请求失败');
+                     });
+                     // axios({
+                     //     method: 'get',
+                     //     url: '/queryBlogByCount',
+                     // }).then(function (res) {
+                     //     // console.log(res.data.data[0]['count(1)']);
+                     //     _self.count = res.data.data[0].count;
+                     //     _self.generatePageTool;
+                     //
+                     // }).catch(function (res) {
+                     //     console.log('请求失败');
+                     // });
+                 } else {
+                     return;
+                 }
 
-                 }).catch(function (res) {
-                     console.log('请求失败');
-                 });
-                 axios({
-                     method: 'get',
-                     url: '/queryBlogByCount',
-                 }).then(function (res) {
-                     // console.log(res.data.data[0]['count(1)']);
-                     _self.count = res.data.data[0].count;
-                     _self.generatePageTool;
-
-                 }).catch(function (res) {
-                     console.log('请求失败');
-                 });
              }
         },
         generatePageTool: function () {
