@@ -25,6 +25,7 @@ app.get('/queryBlogByHot', loader.get('/queryBlogByHot'));// 最近热门
 app.get('/queryNewComment', loader.get('/queryNewComment'));// 最新评论
 
 app.get('/queryByTag', loader.get('/queryByTag'));// 点击随机云标签
+app.get("/queryByTagCount", loader.get("/queryByTagCount"));//点击标签总数
 
 app.listen(globalConfig.port, function () {
     console.log('服务已启动')

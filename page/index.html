@@ -38,12 +38,14 @@
                      <div class="article_footer">发布于{{article.date}} |  浏览({{article.views}}) | Tags：{{article.tags}}</div>
                  </div>
                  <div class="page_tool">
-                     <ul>
-                         <li v-for="pageNum in pageNumList" v-on:click="jumpTo(pageNum.page)" :class="{now_page: pageNum.text == page}">{{pageNum.text}}</li>
-                         <!--<li>1</li>-->
-                         <!--<li>2</li>-->
-                         <!--<li>3</li>-->
-                         <!--<li>>></li>-->
+                     <ul class="pagelist" v-if="pages > 1">
+                         <li class="jump" v-show="page != 1" @click="lessPage()"><<</li>
+                         <li class="jump" v-on:click="jumpPage(1)">首页</li>
+                         <li class="ellipsis" v-show="efont">...</li>
+                         <li class="jump" v-for="num in indexs" :class="{bgprimary:page==num}" @click="jumpPage(num)">{{num}}</li>
+                         <li class="ellipsis" v-show="ebehind">...</li>
+                         <li class="jump" @click="jumpPage(pages)">尾页</li>
+                         <li v-show="pend" class="jump" @click="addPage()">>></li>
                      </ul>
                  </div>
              </div>
@@ -87,16 +89,16 @@
      </div>
      <div class="footer">
          <ul>
-             <li>C/C++</li>
-             <li>C/C++</li>
-             <li>C/C++</li>
-             <li>C/C++</li>
-             <li>C/C++</li>
-             <li>C/C++</li>
-             <li>新闻资讯</li>
-             <li>C/C++</li>
+             <li>HTML</li>
+             <li>CSS</li>
+             <li>JavaScript</li>
+             <li>JQuery</li>
+             <li>ES6</li>
+             <li>Vue</li>
+             <li>React</li>
+             <li>Node</li>
          </ul>
-         <p>Copyright © 2010-2017 Flora个人博客 All rights reserved. 由免费开源的WordPress强力驱动. 鲁ICP备14017955号站长统计</p>
+         <p>Flora个人博客 All rights reserved.</p>
      </div>
      <script src="./js/index.js"></script>
      <script src="./js/base.js"></script>

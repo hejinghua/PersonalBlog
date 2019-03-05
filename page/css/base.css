@@ -215,13 +215,15 @@ body {
     display: inline-block;
     float: left;
     height: 34px;
-    width: 40px;
+    width: 60px;
     background: #ffffff;
     text-align: center;
     line-height: 34px;
     border: 1px solid gainsboro;
     color: #333;
     font-size: 14px;
+}
+.page_tool > ul > .jump {
     cursor: pointer;
 }
 .page_tool > ul > li:nth-child(1) {
@@ -233,7 +235,7 @@ body {
 .page_tool > ul > li:hover {
     background: #e1e6e6;
 }
-.now_page {
+.bgprimary {
     background: #000 !important;
     color: #ffffff !important;
     font-weight: 600;

@@ -49,9 +49,9 @@ function queryBlogByPage(request, response) {
     let params = url.parse(request.url, true).query;
     blogDao.queryBlogByPage(parseInt(params.page), parseInt(params.pageSize), function (result) {
         for(let i in result) {
-            result[i].content = result[i].content.replace(/<img[\w\W]*'>/, '');
+            result[i].content = result[i].content.replace(/<img[\w\W]*">/, '');
             result[i].content = result[i].content.replace(/<[\w\W]{1,5}>/g, "");
-            result[i].content = result[i].content.substring(0, 100) + '...';
+            result[i].content = result[i].content.substring(0, 100);
         }
         response.writeHead(200);
         response.write(respUtil.writeResult('success', '查询成功', result));

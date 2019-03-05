@@ -48,14 +48,28 @@ function getResult(blogList, len, response) {
         }, 10);
     }else {
         for(let i in blogList) {
-            blogList[i].content = blogList[i].content.replace(/<img[\w\W]*'>/, "");
+            blogList[i].content = blogList[i].content.replace(/<img[\w\W]*">/, "");
             blogList[i].content = blogList[i].content.replace(/<[\w\W]{1,5}>/g, "");
-            blogList[i].content = blogList[i].content.substring(0, 100) + '...';
+            blogList[i].content = blogList[i].content.substring(0, 300);
         }
         response.writeHead(200);
         response.write(respUtil.writeResult('success', '成功', blogList));
         response.end();
     }
 }
+
+function queryByTagCount(request, response) {
+    let params = url.parse(request.url, true).query;
+    // console.log(params.tag);
+    tagsDao.queryTag(params.tag, function (result) {
+        // console.log(result);
+        mappingDap.queryByTagCount(result[0].id, function (result) {
+            response.writeHead(200);
+            response.write(respUtil.writeResult("success", "查询成功", result));
+            response.end();
+        });
+    });
+}
+path.set("/queryByTagCount", queryByTagCount);
 
 module.exports.path = path;

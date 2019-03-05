@@ -36,7 +36,7 @@
         <div class="blog_comments" id="blog_comments">
             <p class="blog_comments_msg">当前文章：目前有{{total}} 条留言</p>
             <div class="blog_comment" v-for="comment in commentList">
-                <span><b>{{comment.user_name}}：</b> {{comment.options}} 发表于{{comment.date}}<span class="comment_repeat" v-on:click="reply(comment.id, comment.user_name)">[回复]</span></span>
+                <span><b>{{comment.user_name}}：</b> <span v-show="comment.options" style="color: #58ABE3;padding-left: 0px;">{{comment.options}}</span>发表于{{comment.date}}<span class="comment_repeat" v-on:click="reply(comment.id, comment.user_name)">[回复]</span></span>
                 <div>{{comment.comments}}</div>
             </div>
         </div>
@@ -97,18 +97,18 @@
     </div>
 </div>
     <div class="footer">
-    <ul>
-        <li>C/C++</li>
-        <li>C/C++</li>
-        <li>C/C++</li>
-        <li>C/C++</li>
-        <li>C/C++</li>
-        <li>C/C++</li>
-        <li>新闻资讯</li>
-        <li>C/C++</li>
-    </ul>
-    <p>Copyright © 2010-2017 Flora个人博客 All rights reserved. 由免费开源的WordPress强力驱动. 鲁ICP备14017955号站长统计</p>
-</div>
+        <ul>
+            <li>HTML</li>
+            <li>CSS</li>
+            <li>JavaScript</li>
+            <li>JQuery</li>
+            <li>ES6</li>
+            <li>Vue</li>
+            <li>React</li>
+            <li>Node</li>
+        </ul>
+        <p>Flora个人博客 All rights reserved.</p>
+    </div>
     <script src="./js/blog_detail.js"></script>
     <script src="./js/blog_comments.js"></script>
     <script src="./js/base.js"></script>
